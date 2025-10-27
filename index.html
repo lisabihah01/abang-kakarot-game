@@ -1,42 +1,19 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Neon Path — Abang Kakaort</title>
-
-  <!-- confetti lib -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Green Connect 🚗</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <main>
-    <header>
-      <h1>Neon Path — Abang Kakaort</h1>
-      <div class="hud">
-        <div id="level">Level 1</div>
-        <div id="moves">Moves: 0</div>
-        <div id="timer">00:00</div>
-      </div>
-    </header>
-
-    <section class="game-area">
-      <div id="grid" class="grid" aria-label="Puzzle grid"></div>
-
-      <!-- overlay canvases -->
-      <canvas id="pathCanvas"></canvas>
-      <canvas id="confettiCanvas"></canvas>
-    </section>
-
-    <footer>
-      <div class="legend">
-        <div><span class="dot start"></span> Start (🚗)</div>
-        <div><span class="dot goal"></span> Goal (🏁)</div>
-      </div>
-      <small>Drag a tile onto another tile to swap. Connect Start → Goal. Neon path shows connected route.</small>
-    </footer>
-  </main>
+  <div id="game-container">
+    <h1>🚗 Green Connect 🏁</h1>
+    <div id="timer">Time: 0s</div>
+    <div id="grid"></div>
+    <div id="win-message">🎉 You Win Abang Kakaort! 🎉</div>
+  </div>
 
   <script src="script.js"></script>
 </body>
