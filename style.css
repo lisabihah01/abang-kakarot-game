@@ -1,14 +1,14 @@
 body {
   margin: 0;
-  background: radial-gradient(circle at center, #030b20, #000);
+  background: radial-gradient(circle at center, #001a00, #000);
   overflow: hidden;
   font-family: 'Orbitron', sans-serif;
-  color: white;
+  color: #ccffcc;
   text-align: center;
 }
 
 h1 {
-  text-shadow: 0 0 10px #00bfff;
+  text-shadow: 0 0 10px #00ff80;
 }
 
 #game-container {
@@ -24,40 +24,35 @@ h1 {
   grid-template-columns: repeat(5, 60px);
   grid-gap: 5px;
   margin-top: 10px;
+  position: relative;
 }
 
 .cell {
   width: 60px;
   height: 60px;
-  border: 2px solid rgba(0, 191, 255, 0.4);
+  border: 2px solid rgba(0, 255, 128, 0.4);
   border-radius: 12px;
-  background: rgba(0, 30, 60, 0.8);
-  box-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
+  background: rgba(0, 60, 30, 0.8);
+  box-shadow: 0 0 10px rgba(0, 255, 128, 0.3);
   transition: all 0.2s;
 }
 
 .cell.active {
-  background: rgba(0, 191, 255, 0.8);
-  box-shadow: 0 0 20px #00bfff;
+  background: rgba(0, 255, 128, 0.8);
+  box-shadow: 0 0 20px #00ff80;
 }
 
-.cell.start {
-  background: #00bfff;
-  box-shadow: 0 0 20px #00bfff;
-  font-size: 30px;
-}
-
-.cell.end {
-  background: #00bfff;
-  box-shadow: 0 0 20px #00bfff;
+.cell.start, .cell.end {
+  background: #00ff80;
+  box-shadow: 0 0 20px #00ff80;
   font-size: 30px;
 }
 
 .line {
   position: absolute;
   height: 6px;
-  background: #00bfff;
-  box-shadow: 0 0 15px #00bfff;
+  background: #00ff80;
+  box-shadow: 0 0 15px #00ff80;
   border-radius: 5px;
   transform-origin: left center;
   z-index: 0;
@@ -66,14 +61,14 @@ h1 {
 #timer {
   font-size: 20px;
   margin-top: 10px;
-  text-shadow: 0 0 8px #00bfff;
+  text-shadow: 0 0 8px #00ff80;
 }
 
 #win-message {
   display: none;
   font-size: 30px;
-  color: #00ffff;
-  text-shadow: 0 0 20px #00ffff;
+  color: #00ff99;
+  text-shadow: 0 0 20px #00ff99;
   animation: fadeIn 1s ease-in-out;
 }
 
