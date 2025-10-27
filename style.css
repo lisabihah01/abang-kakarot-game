@@ -1,9 +1,8 @@
 :root{
   --bg:#06060a;
   --panel:#0b0b14;
-  --neon1: #3ae0ff; /* blue */
-  --neon2: #b66dff; /* purple */
-  --glass: rgba(255,255,255,0.03);
+  --neon: #3ae0ff;
+  --neon-acc: #b66dff;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
@@ -14,12 +13,12 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:16px;
+  padding:14px;
 }
 
 main{
   width:100%;
-  max-width:520px;
+  max-width:600px;
   display:flex;
   flex-direction:column;
   gap:12px;
@@ -34,13 +33,12 @@ header{
 h1{
   font-size:18px;
   letter-spacing:1px;
-  color:var(--neon1);
+  color:var(--neon);
   text-shadow:0 0 8px rgba(58,224,255,0.12);
 }
-.hud{display:flex;gap:10px;font-size:14px;color:#cfefff;align-items:center}
-#status{color:var(--neon2);font-weight:600}
+.hud{display:flex;gap:12px;font-size:14px;color:#cfefff;align-items:center}
+#timer{color:#9ef}
 
-/* Grid */
 .game-area{position:relative}
 .grid{
   width:100%;
@@ -54,7 +52,7 @@ h1{
   border-radius:14px;
   border:1px solid rgba(255,255,255,0.04);
   box-shadow: 0 8px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
-  touch-action: none;
+  touch-action:none;
   -webkit-user-select:none;
   user-select:none;
 }
@@ -67,7 +65,7 @@ h1{
   display:flex;
   align-items:center;
   justify-content:center;
-  touch-action: none;
+  touch-action:none;
   -webkit-user-select:none;
   user-select:none;
   box-shadow: 0 6px 18px rgba(0,0,0,0.6), 0 0 14px rgba(86, 95, 255, 0.03);
@@ -77,25 +75,24 @@ h1{
 }
 .tile.dragging{opacity:0.6; transform:scale(.98)}
 
-/* small emoji overlay for start/goal */
 .tile .marker {
   position:absolute;
   font-size:20px;
   transform:translateY(-8px);
   text-shadow: 0 4px 18px rgba(0,0,0,0.7), 0 0 10px rgba(58,224,255,0.06);
 }
-.tile.start .marker{ color: var(--neon1) }
-.tile.goal .marker{ color: var(--neon2) }
+.tile.start .marker{ color: var(--neon) }
+.tile.goal .marker{ color: var(--neon-acc) }
 
 /* SVG neon pipes */
 .pipe { filter: drop-shadow(0 0 8px rgba(58,224,255,0.06)); stroke-linecap:round; stroke-linejoin:round; }
 
-/* Footer */
+/* footer */
 footer{display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center}
 .legend{display:flex;gap:12px;align-items:center;color:#cde}
 .dot{width:12px;height:12px;border-radius:50%;display:inline-block}
-.dot.start{background:var(--neon1);box-shadow:0 0 8px rgba(58,224,255,0.25)}
-.dot.goal{background:var(--neon2);box-shadow:0 0 8px rgba(182,109,255,0.25)}
+.dot.start{background:var(--neon);box-shadow:0 0 8px rgba(58,224,255,0.25)}
+.dot.goal{background:var(--neon-acc);box-shadow:0 0 8px rgba(182,109,255,0.25)}
 small{color:#9fb; opacity:0.9}
 
 /* overlay canvases */
@@ -106,15 +103,7 @@ small{color:#9fb; opacity:0.9}
   pointer-events:none;
 }
 
-/* controls */
-.controls-row{display:flex;gap:10px;justify-content:center}
-.controls-row button{
-  padding:8px 12px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--neon1),var(--neon2));
-  color:#021; font-weight:700; cursor:pointer; box-shadow:0 8px 28px rgba(182,109,255,0.06);
-}
-.controls-row button[style*="display:none"]{display:none}
-
-/* Win overlay */
+/* win overlay */
 .winOverlay{
   position:absolute;
   inset:0;
@@ -122,20 +111,19 @@ small{color:#9fb; opacity:0.9}
   align-items:center;
   justify-content:center;
   background:rgba(0,0,0,0.45);
-  z-index:30;
+  z-index:60;
   pointer-events:auto;
 }
 .winCard{
   padding:18px 22px;
   border-radius:12px;
-  background: linear-gradient(135deg, rgba(11,11,20,0.8), rgba(6,6,12,0.7));
+  background: linear-gradient(135deg, rgba(11,11,20,0.85), rgba(6,6,12,0.7));
   border:1px solid rgba(182,109,255,0.12);
   text-align:center;
-  transform:translateY(6px);
 }
 .winTitle{
   font-size:20px;
-  color:var(--neon2);
+  color:var(--neon-acc);
   text-shadow:0 0 12px rgba(182,109,255,0.18);
   margin-bottom:6px;
 }
@@ -143,9 +131,9 @@ small{color:#9fb; opacity:0.9}
   margin-top:10px;
   padding:8px 14px;
   border-radius:10px;
-  background:linear-gradient(90deg, var(--neon1), var(--neon2));
-  color:#071; font-weight:700; border:none; cursor:pointer;
-  box-shadow:0 8px 28px rgba(182,109,255,0.08);
+  background:linear-gradient(90deg, var(--neon), var(--neon-acc));
+  color:#021; font-weight:700; border:none; cursor:pointer;
+  box-shadow:0 8px 28px rgba(182,109,255,0.06);
 }
 @media (max-width:420px){
   h1{font-size:16px}
