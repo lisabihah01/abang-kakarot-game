@@ -3,32 +3,32 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Zombie Station — Mobile</title>
+  <title>Path Puzzle — You Win Abang Kakaort!</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>Zombie Station</h1>
-    <div class="hud">
-      <div id="hp">HP: 100</div>
-      <div id="score">Score: 0</div>
-    </div>
-  </header>
-
   <main>
-    <canvas id="gameCanvas"></canvas>
+    <header>
+      <h1>Neon Path — Abang Kakaort</h1>
+      <div class="hud">
+        <div id="moves">Moves: 0</div>
+        <div id="status"></div>
+      </div>
+    </header>
 
-    <!-- Controls for mobile (shoot + optional auto-aim) -->
-    <div class="controls">
-      <button id="btn-left">◀️</button>
-      <button id="btn-shoot">FIRE 🔫</button>
-      <button id="btn-right">▶️</button>
-    </div>
+    <section class="game-area">
+      <div id="grid" class="grid" aria-label="Puzzle grid"></div>
+      <canvas id="confettiCanvas"></canvas>
+    </section>
+
+    <footer>
+      <div class="legend">
+        <div><span class="dot start"></span> Start</div>
+        <div><span class="dot goal"></span> Goal</div>
+      </div>
+      <small>Drag a tile onto another tile to swap them. Connect Start → Goal.</small>
+    </footer>
   </main>
-
-  <footer>
-    <small>Swipe horizontally on the play area to move. Tap the screen to shoot. Survive as long as you can!</small>
-  </footer>
 
   <script src="script.js"></script>
 </body>
