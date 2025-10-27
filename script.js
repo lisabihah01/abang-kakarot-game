@@ -7,7 +7,7 @@ const pickSound = new Audio("assets/connect.mp3");
 const winSound = new Audio("assets/win.mp3");
 
 backgroundMusic.loop = true;
-backgroundMusic.volume = 0.5;
+backgroundMusic.volume = 0.8;
 pickSound.volume = 1.0;
 winSound.volume = 1.0;
 
@@ -32,6 +32,7 @@ function startGame() {
 
 function generateLevel(levelNum) {
   gridElement.innerHTML = "";
+  document.querySelectorAll(".line").forEach(l => l.remove());
   grid = [];
   gridElement.style.gridTemplateColumns = `repeat(${gridSize}, 60px)`;
 
@@ -44,13 +45,23 @@ function generateLevel(levelNum) {
     grid.push(cell);
   }
 
-  // Level setups
   if (levelNum === 1) {
     startCell = grid[0];
     endCell = grid[24];
   } else {
+    gridSize = 6;
+    gridElement.style.gridTemplateColumns = `repeat(${gridSize}, 60px)`;
+    gridElement.innerHTML = "";
+    for (let i = 0; i < gridSize * gridSize; i++) {
+      const cell = document.createElement("div");
+      cell.classList.add("cell");
+      cell.dataset.index = i;
+      cell.addEventListener("click", handleCellClick);
+      gridElement.appendChild(cell);
+      grid.push(cell);
+    }
     startCell = grid[2];
-    endCell = grid[grid.length - 3];
+    endCell = grid[grid.length - 4];
   }
 
   startCell.textContent = "🚗";
@@ -101,7 +112,6 @@ function drawLine(cell1, cell2) {
   line.style.left = `${x1}px`;
   line.style.top = `${y1}px`;
   line.style.transform = `rotate(${angle}deg)`;
-
   document.body.appendChild(line);
 }
 
@@ -116,10 +126,9 @@ function completeLevel() {
     winMessage.style.display = "none";
     level++;
     if (level === 2) {
-      gridSize = 6;
       startGame();
     } else {
-      alert("Game Over! Semua stage siap!");
+      alert("Game Over! Semua stage siap 💚");
     }
   }, 4000);
 }
