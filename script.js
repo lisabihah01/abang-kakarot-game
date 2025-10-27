@@ -18,15 +18,20 @@ let path = [];
 let level = 1;
 let timer = 0;
 let timerInterval;
+let drawing = false;
 
 function startGame() {
-  backgroundMusic.play();
+  backgroundMusic.play().catch(() => {
+    console.log("Autoplay blocked until user interacts.");
+  });
   timer = 0;
   timerElement.textContent = `Time: ${timer}s`;
+  clearInterval(timerInterval);
   timerInterval = setInterval(() => {
     timer++;
     timerElement.textContent = `Time: ${timer}s`;
   }, 1000);
+
   generateLevel(level);
 }
 
@@ -47,11 +52,12 @@ function generateLevel(levelNum) {
 
   if (levelNum === 1) {
     startCell = grid[0];
-    endCell = grid[24];
+    endCell = grid[grid.length - 1];
   } else {
     gridSize = 6;
     gridElement.style.gridTemplateColumns = `repeat(${gridSize}, 60px)`;
     gridElement.innerHTML = "";
+    grid = [];
     for (let i = 0; i < gridSize * gridSize; i++) {
       const cell = document.createElement("div");
       cell.classList.add("cell");
@@ -70,7 +76,6 @@ function generateLevel(levelNum) {
   endCell.classList.add("end");
 }
 
-let drawing = false;
 function handleCellClick(e) {
   const cell = e.target;
 
@@ -97,11 +102,12 @@ function drawLine(cell1, cell2) {
 
   const rect1 = cell1.getBoundingClientRect();
   const rect2 = cell2.getBoundingClientRect();
+  const gridRect = gridElement.getBoundingClientRect();
 
-  const x1 = rect1.left + rect1.width / 2;
-  const y1 = rect1.top + rect1.height / 2;
-  const x2 = rect2.left + rect2.width / 2;
-  const y2 = rect2.top + rect2.height / 2;
+  const x1 = rect1.left - gridRect.left + rect1.width / 2;
+  const y1 = rect1.top - gridRect.top + rect1.height / 2;
+  const x2 = rect2.left - gridRect.left + rect2.width / 2;
+  const y2 = rect2.top - gridRect.top + rect2.height / 2;
 
   const dx = x2 - x1;
   const dy = y2 - y1;
@@ -112,7 +118,7 @@ function drawLine(cell1, cell2) {
   line.style.left = `${x1}px`;
   line.style.top = `${y1}px`;
   line.style.transform = `rotate(${angle}deg)`;
-  document.body.appendChild(line);
+  gridElement.appendChild(line);
 }
 
 function completeLevel() {
