@@ -1,20 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Green Connect 🚗</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Green Connect — Abang Kakaort</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- confetti lib (used for win effect) -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
 </head>
 <body>
-  <div id="game-container">
-    <h1>🚗 Green Connect 🏁</h1>
-    <div id="timer">Time: 0s</div>
-    <div id="grid"></div>
-    <div id="win-message">🎉 You Win Abang Kakaort! 🎉</div>
-  </div>
+  <main>
+    <header>
+      <h1>🚗 Green Connect</h1>
+      <div class="hud">
+        <div id="levelLabel">Level 1</div>
+        <div id="timer">00:00</div>
+      </div>
+    </header>
 
+    <section class="game-area">
+      <div id="grid" class="grid" aria-label="Puzzle grid"></div>
+
+      <!-- canvas overlay inside grid for neon lines -->
+      <canvas id="pathCanvas"></canvas>
+    </section>
+
+    <footer>
+      <div class="legend">
+        <div><span class="dot start"></span> Start (🚗)</div>
+        <div><span class="dot goal"></span> Goal (🏁)</div>
+      </div>
+      <small>Tap the start (🚗) then drag or tap adjacent cells to connect to the goal (🏁).</small>
+    </footer>
+  </main>
+
+  <!-- win overlay inserted dynamically -->
   <script src="script.js"></script>
 </body>
 </html>
