@@ -1,9 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Neon Path — You Win Abang Kakaort!</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Neon Path — Abang Kakaort (Stage 1 & 2)</title>
+
+  <!-- confetti library (used for win effect) -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -11,9 +15,9 @@
     <header>
       <h1>Neon Path — Abang Kakaort</h1>
       <div class="hud">
-        <div id="level">Level: 1</div>
+        <div id="level">Level 1</div>
         <div id="moves">Moves: 0</div>
-        <div id="status"></div>
+        <div id="timer">00:00</div>
       </div>
     </header>
 
@@ -25,16 +29,10 @@
       <canvas id="confettiCanvas"></canvas>
     </section>
 
-    <div class="controls-row">
-      <button id="hintBtn">Hint</button>
-      <button id="restartBtn">Restart</button>
-      <button id="nextBtn" style="display:none">Next Level</button>
-    </div>
-
     <footer>
       <div class="legend">
         <div><span class="dot start"></span> Start (🚗)</div>
-        <div><span class="dot goal"></span> Goal (🚗)</div>
+        <div><span class="dot goal"></span> Goal (🏁)</div>
       </div>
       <small>Drag a tile onto another tile to swap them. Connect Start → Goal. Neon path shows connected route.</small>
     </footer>
