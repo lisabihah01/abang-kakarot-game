@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Zombie Station — Mobile</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Zombie Station</h1>
+    <div class="hud">
+      <div id="hp">HP: 100</div>
+      <div id="score">Score: 0</div>
+    </div>
+  </header>
+
+  <main>
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- Controls for mobile (shoot + optional auto-aim) -->
+    <div class="controls">
+      <button id="btn-left">◀️</button>
+      <button id="btn-shoot">FIRE 🔫</button>
+      <button id="btn-right">▶️</button>
+    </div>
+  </main>
+
+  <footer>
+    <small>Swipe horizontally on the play area to move. Tap the screen to shoot. Survive as long as you can!</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

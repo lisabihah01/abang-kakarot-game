@@ -1,0 +1,75 @@
+:root{
+  --bg1: #070711;
+  --bg2: #1b1b2f;
+  --accent: #e74c3c;
+}
+*{box-sizing:border-box; margin:0; padding:0}
+html,body{height:100%}
+body{
+  font-family: Inter, system-ui, -apple-system, Helvetica, Arial;
+  background: linear-gradient(180deg,var(--bg1), var(--bg2));
+  color: #fff;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+header{
+  width:100%;
+  padding:10px 12px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  max-width:480px;
+}
+h1{
+  font-size:18px;
+  letter-spacing:1px;
+}
+.hud{
+  display:flex;
+  gap:10px;
+  font-size:14px;
+}
+main{
+  width:100%;
+  max-width:480px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:8px;
+  gap:8px;
+  flex:1;
+}
+canvas{
+  width:98%;
+  height:58vh;
+  background: linear-gradient(#222 0%, #151515 60%);
+  border-radius:12px;
+  border: 2px solid rgba(255,255,255,0.06);
+  touch-action: none; /* allow custom touch handling */
+  -webkit-user-select:none;
+}
+/* Controls */
+.controls{
+  width:100%;
+  max-width:480px;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  padding:6px;
+}
+.controls button{
+  flex:1;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  font-size:16px;
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+}
+.controls button:active{ transform:scale(0.98) }
+
+footer{padding:8px; font-size:12px; color:#bbb; max-width:480px; text-align:center;}
