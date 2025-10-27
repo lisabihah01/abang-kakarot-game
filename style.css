@@ -114,7 +114,7 @@ small{color:#9fb; opacity:0.9}
 }
 .controls-row button[style*="display:none"]{display:none}
 
-/* Win overlay (same as previous) */
+/* Win overlay */
 .winOverlay{
   position:absolute;
   inset:0;
