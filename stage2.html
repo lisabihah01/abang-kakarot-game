@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stage 2 - Abang Kakaort Puzzle</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <script>
+    let grid = [];
+    let cols = 5, rows = 5;
+    let cellSize = 100;
+    let start = { x: 0, y: 2 };
+    let end = { x: 4, y: 2 };
+    let bgMusic, connectSound, winSound;
+    let startTime, elapsed = 0;
+    let gameWon = false;
+
+    function preload() {
+      bgMusic = loadSound('assets/background.mp3');
+      connectSound = loadSound('assets/connect.mp3');
+      winSound = loadSound('assets/win.mp3');
+    }
+
+    function setup() {
+      createCanvas(windowWidth, windowHeight);
+      cellSize = min(width, height) / 7;
+      startTime = millis();
+
+      // autoplay background
+      bgMusic.setVolume(1.0);
+      bgMusic.loop();
+
+      for (let y = 0; y < rows; y++) {
+        grid[y] = [];
+        for (let x = 0; x < cols; x++) {
+          grid[y][x] = false;
+        }
+      }
+    }
+
+    function draw() {
+      background(10, 10, 25);
+
+      // Timer
+      fill(0, 255, 255);
+      textSize(24);
+      textAlign(RIGHT, TOP);
+      elapsed = int((millis() - startTime) / 1000);
+      text("⏱ " + elapsed + "s", width - 20, 20);
+
+      // Draw grid
+      stroke(0, 200, 255);
+      strokeWeight(2);
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          let cx = width / 2 - (cols * cellSize) / 2 + x * cellSize;
+          let cy = height / 2 - (rows * cellSize) / 2 + y * cellSize;
+          fill(grid[y][x] ? color(0, 255, 255, 100) : color(30));
+          rect(cx, cy, cellSize - 5, cellSize - 5, 10);
+        }
+      }
+
+      // Start & End
+      drawEmoji(start.x, start.y, "🚗");
+      drawEmoji(end.x, end.y, "🚗");
+
+      drawConnections();
+
+      if (checkWin() && !gameWon) {
+        gameWon = true;
+        winSound.play();
+        celebrate();
+      }
+    }
+
+    function drawEmoji(x, y, emoji) {
+      let cx = width / 2 - (cols * cellSize) / 2 + x * cellSize;
+      let cy = height / 2 - (rows * cellSize) / 2 + y * cellSize;
+      textSize(40);
+      textAlign(CENTER, CENTER);
+      text(emoji, cx + cellSize / 2 - 5, cy + cellSize / 2);
+    }
+
+    function mousePressed() {
+      let gx = floor((mouseX - (width / 2 - (cols * cellSize) / 2)) / cellSize);
+      let gy = floor((mouseY - (height / 2 - (rows * cellSize) / 2)) / cellSize);
+
+      if (gx >= 0 && gx < cols && gy >= 0 && gy < rows) {
+        grid[gy][gx] = !grid[gy][gx];
+        connectSound.play();
+      }
+    }
+
+    function drawConnections() {
+      stroke(0, 200, 255);
+      strokeWeight(8);
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          if (grid[y][x]) {
+            let cx = width / 2 - (cols * cellSize) / 2 + x * cellSize + cellSize / 2;
+            let cy = height / 2 - (rows * cellSize) / 2 + y * cellSize + cellSize / 2;
+            if (x < cols - 1 && grid[y][x + 1]) line(cx, cy, cx + cellSize, cy);
+            if (y < rows - 1 && grid[y + 1][x]) line(cx, cy, cx, cy + cellSize);
+          }
+        }
+      }
+      drawingContext.shadowBlur = 15;
+      drawingContext.shadowColor = color(0, 200, 255);
+    }
+
+    function checkWin() {
+      for (let x = 0; x < cols; x++) {
+        if (!grid[2][x]) return false;
+      }
+      return true;
+    }
+
+    function celebrate() {
+      confetti({
+        particleCount: 300,
+        spread: 100,
+        origin: { y: 0.6 }
+      });
+      fill(255);
+      textSize(32);
+      textAlign(CENTER, CENTER);
+      text("❤️ You Win Abang Kakarot! ❤️", width / 2, height / 2);
+    }
+  </script>
+</body>
+</html>
